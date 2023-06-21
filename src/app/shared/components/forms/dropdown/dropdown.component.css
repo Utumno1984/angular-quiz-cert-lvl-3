@@ -1,0 +1,27 @@
+.dropdown-container {
+  position: relative;
+  display: inline;
+  width: 100%;
+}
+
+.dropdown-options {
+  display: block;
+  position: absolute;
+  left: 0;
+  background: white;
+  width: 100%;
+}
+
+input:not(:focus) + .dropdown-options  {
+  display: none;
+}
+
+input:focus + .dropdown-options .option {
+  font-size: 14px;
+  padding: 10px;
+}
+
+input:focus + .dropdown-options .option:hover {
+  background: #f1f0f0;
+  cursor: pointer;
+}

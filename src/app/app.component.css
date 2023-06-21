@@ -1,0 +1,3 @@
+h1{
+  padding: calc(1.5 * var(--universal-padding));
+}

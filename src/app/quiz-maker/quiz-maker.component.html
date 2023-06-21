@@ -1,0 +1,36 @@
+<div id="quiz-maker" class="row">
+  <div class="form-wrapper">
+    <form
+      [formGroup]="form"
+      *ngIf="categories$ | async as categoryList; else loading;"
+      (ngSubmit)="createQuiz()"
+    >
+      <app-dropdown [labelKey]="'name'" formControlName="category" placeholder="Select category" [options]="categoryList"></app-dropdown>
+
+      <app-dropdown
+        *ngIf="subCategoryList().length"
+        formControlName="subCategory"
+        placeholder="Select subCategory"
+        [options]="subCategoryList()">
+      </app-dropdown>
+
+      <select id="difficultySelect" formControlName="difficult">
+        <option [value]="null">Select difficulty</option>
+        <option *ngFor="let difficulty of difficultyList" [value]="difficulty.name">{{difficulty.name}}</option>
+      </select>
+
+    </form>
+    <button class="primary" id="createBtn" (click)="createQuiz()">Create</button>
+  </div>
+
+  <ng-template #loading>Loading ...</ng-template>
+
+</div>
+
+<div class="row">
+   <app-quiz
+    [questions]="questions$ | async"
+    [canChangeQuestion]="!!bonusQuestion()"
+    (questionChanged)="onQuestionChanged($event)"
+   ></app-quiz>
+</div>

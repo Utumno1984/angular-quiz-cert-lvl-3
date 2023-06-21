@@ -1,0 +1,21 @@
+<div class="dropdown-container">
+  <input
+    [placeholder]="value?.[labelKey] || placeholder"
+    [ngModel]="filter()"
+    (ngModelChange)="filter.set($event)"
+  >
+  <div class="dropdown-options" role="listbox">
+    <ng-template [ngIf]="filteredOptions()">
+      <div *ngFor="let option of optionList">
+        <div
+          *ngIf="!!option['visible']"
+          [innerHTML]="(option![labelKey] ?? '') | boldMatch:filter()"
+          (mousedown)="writeValue(option)"
+          class="option"
+          role="option"
+        >
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
